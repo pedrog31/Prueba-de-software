@@ -1,3 +1,5 @@
+package pruebasPrograma1;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,11 +19,16 @@ import static org.junit.Assert.*;
  */
 public class PruebaListaLigada {
     
+    private Lista listaDatos;
+    private Nodo nodo;
+    
     public PruebaListaLigada() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        listaDatos = new Lista();
+        nodo = new Nodo (160,15.0);
     }
     
     @AfterClass
@@ -36,9 +43,10 @@ public class PruebaListaLigada {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testInsertarDato () {
+        listaDatos.insertarDato(160,15.0);
+        assertEquals (nodo, listaDatos.getUltimo());
+    }
+    
 }
