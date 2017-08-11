@@ -1,5 +1,5 @@
 # PS-Programa-1
-Integrantes:
+Integrantes:  
+Daniel Ospina Perez  
+Mario Andres Garcia  
 Pedro Pablo Gallego Pinzon
-Daniel Ospina Perez
-Mario Andres Garcia
