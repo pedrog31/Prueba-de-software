@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package programa1;
-
+import javax.naming.spi.DirStateFactory.Result;
+import org.junit.*;
 /**
  *
  * @author pedrog31
@@ -15,7 +16,8 @@ public class Programa1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        org.junit.runner.JUnitCore.main("pruebasPrograma1.PruebaListaLigada");
+        //Result result = JUnitCore.runClasses (PruebaListaLigada.class);
     }
     
 }
