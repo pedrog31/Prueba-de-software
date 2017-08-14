@@ -18,10 +18,18 @@ class Lista {
     
     public void insertarDato (float columna1, float columna2) {
        Nodo nodo = new Nodo (columna1, columna2);
-       If ( cabeza.getLigaFinal() != null ) cabeza.getLigaFinal().setLiga(nodo);
+       if ( cabeza.getLigaFinal() != null ) cabeza.getLigaFinal().setLiga(nodo);
        else cabeza.setLigaInicio(nodo);
        cabeza.setLigaFinal(nodo);
        cabeza.setnFilas(cabeza.getnFilas()+1);
+    }
+    
+    public Nodo getPrimero () {
+        return cabeza.getLigaInicio();
+    }
+    
+    public Nodo getUltimo () {
+        return cabeza.getLigaFinal();
     }
 
     public NodoCabeza getCabeza() {
@@ -31,6 +39,4 @@ class Lista {
     public void setCabeza(NodoCabeza cabeza) {
         this.cabeza = cabeza;
     }
-    
-    
 }

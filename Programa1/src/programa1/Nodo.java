@@ -19,6 +19,9 @@ class Nodo {
         liga = null;
     }
 
+    public Nodo() {
+    }
+
     public float getColumna1() {
         return columna1;
     }
