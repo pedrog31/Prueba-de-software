@@ -39,4 +39,8 @@ class Lista {
     public void setCabeza(NodoCabeza cabeza) {
         this.cabeza = cabeza;
     }
+    
+    public boolean estaVacia () {
+        return cabeza.getLigaInicio() == null && null == cabeza.getLigaFinal();
+    }
 }
