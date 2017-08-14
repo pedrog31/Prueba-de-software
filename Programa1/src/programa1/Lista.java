@@ -19,7 +19,7 @@ class Lista {
     
     public void insertarDato (float columna1, float columna2) {
        nodo = new Nodo (columna1, columna2);
-       cabeza.getLigaFinal().setLiga(nodo);
+       If ( cabeza.getLigaFinal() != null ) cabeza.getLigaFinal().setLiga(nodo);
        cabeza.setLigaFinal(nodo);
        cabeza.setnFilas(cabeza.getnFilas()+1);
     }
