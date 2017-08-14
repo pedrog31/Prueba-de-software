@@ -10,5 +10,5 @@ package programa1;
  * @author mario.garciat
  */
 class Lista {
-    
+
 }
