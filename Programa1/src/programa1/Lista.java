@@ -17,7 +17,7 @@ class Lista {
     }
     
     public void insertarDato (float columna1, float columna2) {
-       nodo = new Nodo (columna1, columna2);
+       Nodo nodo = new Nodo (columna1, columna2);
        If ( cabeza.getLigaFinal() != null ) cabeza.getLigaFinal().setLiga(nodo);
        else cabeza.setLigaInicio(nodo);
        cabeza.setLigaFinal(nodo);
