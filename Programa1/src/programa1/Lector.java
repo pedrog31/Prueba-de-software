@@ -42,10 +42,18 @@ public class Lector {
             Logger.getLogger(Lector.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
-        
+        String linea;
         if (archivo.hasNextLine()) {
-            while (archivo.hasNextLine()) {                
-                System.out.println(archivo.next());
+            while (archivo.hasNextLine()){
+                linea = archivo.nextLine();
+                if (linea.matches("^([0-9]+([.][0-9]+)?( {1})?[0-9]+([.][0-9]+)?){1}$")) {
+                    System.out.println(linea);
+                    String[] numeros = linea.split(" ");
+                    salida.insertarDato(Float.valueOf(numeros[0]), Float.valueOf(numeros[1]));                    
+                } else {
+                    System.out.println("Los datos no poseen el formato correcto.");
+                    salida = new Lista();
+                }
             }
         }else{
             System.out.println("El archivo está vacío.");

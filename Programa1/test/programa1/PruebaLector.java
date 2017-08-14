@@ -23,7 +23,7 @@ import programa1.Lector;
  */
 public class PruebaLector {
     
-    private Lista lista;
+    private Lista lista, listaVacia;
     private Lector l;
     
     public PruebaLector() {
@@ -39,6 +39,8 @@ public class PruebaLector {
     
     @Before
     public void setUp() {
+        lista = new Lista();
+        listaVacia = new Lista();
         
     }
     
@@ -48,18 +50,30 @@ public class PruebaLector {
     
     @Test(expected = java.io.FileNotFoundException.class)
     public void testLeerDatosArchivoInexistente() throws FileNotFoundException{
-        l = new Lector("./archivo que no existe.txt");
+        l = new Lector("./archivos de prueba/archivo que no existe.txt");
         l.leerDatos();
     }
     
     @Test
     public void testLeerDatosArchivoVacio() throws FileNotFoundException{
-        l = new Lector("./archivo vacio.txt");
-        l.leerDatos();
-        assertNull(l);
+        l = new Lector("./archivos de prueba/archivo vacio.txt");
+        lista = l.leerDatos();
+        assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
+    }
+
+    @Test
+    public void testLeerDatosArchivoCaracteresInvalidos() throws FileNotFoundException{
+        l = new Lector("./archivos de prueba/archivo caracteres invalidos.txt");
+        lista = l.leerDatos();
+        assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
     }
     
-    
+    @Test
+    public void testLeerDatosArchivoUnaColumna() throws FileNotFoundException{
+        l = new Lector("./archivos de prueba/archivo una columna.txt");
+        lista = l.leerDatos();
+        assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
+    }
     
     
 }

@@ -23,5 +23,23 @@ class Lista {
        cabeza.setLigaFinal(nodo);
        cabeza.setnFilas(cabeza.getnFilas()+1);
     }
+
+    public NodoCabeza getCabeza() {
+        return cabeza;
+    }
+
+    public void setCabeza(NodoCabeza cabeza) {
+        this.cabeza = cabeza;
+    }
+
+    public Nodo getNodo() {
+        return nodo;
+    }
+
+    public void setNodo(Nodo nodo) {
+        this.nodo = nodo;
+    }
+    
+    
     
 }
