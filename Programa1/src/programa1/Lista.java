@@ -10,5 +10,18 @@ package programa1;
  * @author mario.garciat
  */
 class Lista {
-
+    private NodoCabeza cabeza;
+    private Nodo nodo;
+    
+    public Lista () {
+        cabeza = new NodoCabeza ();
+    }
+    
+    public void insertarDato (float columna1, float columna2) {
+       nodo = new Nodo (columna1, columna2);
+       cabeza.getLigaFinal().setLiga(nodo);
+       cabeza.setLigaFinal(nodo);
+       cabeza.setnFilas(cabeza.getnFilas()+1);
+    }
+    
 }
