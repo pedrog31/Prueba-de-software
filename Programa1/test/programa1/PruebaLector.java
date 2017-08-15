@@ -51,7 +51,8 @@ public class PruebaLector {
     @Test(expected = java.io.FileNotFoundException.class)
     public void testLeerDatosArchivoInexistente() throws FileNotFoundException{
         l = new Lector("./archivos de prueba/archivo que no existe.txt");
-        l.leerDatos();
+        lista = l.leerDatos();
+        assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
     }
     
     @Test
@@ -73,6 +74,20 @@ public class PruebaLector {
         l = new Lector("./archivos de prueba/archivo una columna.txt");
         lista = l.leerDatos();
         assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
+    }
+    
+    @Test
+    public void testLeerDatosArchivoTresColumnas() throws FileNotFoundException{
+        l = new Lector("./archivos de prueba/archivo tres columnas.txt");
+        lista = l.leerDatos();
+        assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
+    }
+    
+    @Test
+    public void testLeerDatosCorrectos() throws FileNotFoundException{
+        l = new Lector("./archivos de prueba/datos.txt");
+        lista = l.leerDatos();
+        assertEquals(lista.getCabeza().getnFilas(), 10);
     }
     
     

@@ -43,15 +43,17 @@ public class Lector {
             throw ex;
         }
         String linea;
+        boolean falloEncontrado = false;
         if (archivo.hasNextLine()) {
-            while (archivo.hasNextLine()){
+            while (archivo.hasNextLine() && !falloEncontrado){
                 linea = archivo.nextLine();
-                if (linea.matches("^([0-9]+([.][0-9]+)?( {1})?[0-9]+([.][0-9]+)?){1}$")) {
-                    System.out.println(linea);
+                //^(([0-9]+([.][0-9]+)?){1}(( {1})?[0-9]+([.][0-9]+)?){1}){1}$
+                if (linea.matches("^(([0-9]+([.][0-9]+)?){1}( {1})([0-9]+([.][0-9]+)?){1}){1}$")) {
                     String[] numeros = linea.split(" ");
                     salida.insertarDato(Float.valueOf(numeros[0]), Float.valueOf(numeros[1]));                    
                 } else {
                     System.out.println("Los datos no poseen el formato correcto.");
+                    falloEncontrado = true;
                     salida = new Lista();
                 }
             }
