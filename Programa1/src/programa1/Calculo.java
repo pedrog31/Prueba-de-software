@@ -75,8 +75,8 @@ public class Calculo {
             }else{
                 desvEst1 = (float) Math.sqrt(desvEst1/(count-1));
                 desvEst2 = (float) Math.sqrt(desvEst2/(count-1));
-                desvEst1 = (float)Math.rint((double)desvEst1);
-                desvEst2 = (float)Math.rint((double)desvEst2);
+                desvEst1 = (float) (Math.rint((double)desvEst1*100)/100);
+                desvEst2 = (float) (Math.rint((double)desvEst2*100)/100);
             }
             nodoDesv.setColumna1(desvEst1);
             nodoDesv.setColumna2(desvEst2);

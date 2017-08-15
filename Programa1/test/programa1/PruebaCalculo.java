@@ -90,7 +90,7 @@ public class PruebaCalculo{
         media = c.calcularMedia(lista);
         assertFalse(!(media.getColumna1()==550.6f && (media.getColumna2()==60.32f)));
     }
-    
+//    
     @Test
     public void testCalcularDesvEstListaVacia () {
         desvEst = c.calcularDesvEst(listaVacía);
