@@ -50,7 +50,8 @@ public class Lector {
                 //^(([0-9]+([.][0-9]+)?){1}(( {1})?[0-9]+([.][0-9]+)?){1}){1}$
                 if (linea.matches("^(([0-9]+([.][0-9]+)?){1}( {1})([0-9]+([.][0-9]+)?){1}){1}$")) {
                     String[] numeros = linea.split(" ");
-                    salida.insertarDato(Float.valueOf(numeros[0]), Float.valueOf(numeros[1]));                    
+                    Nodo nodo = new Nodo (Float.valueOf(numeros[0]), Float.valueOf(numeros[1]));
+                    falloEncontrado = !salida.insertarNodo(nodo);                    
                 } else {
                     System.out.println("Los datos no poseen el formato correcto.");
                     falloEncontrado = true;

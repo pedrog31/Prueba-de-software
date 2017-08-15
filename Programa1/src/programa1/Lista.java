@@ -16,14 +16,6 @@ class Lista {
         cabeza = new NodoCabeza ();
     }
     
-    public void insertarDato (float columna1, float columna2) {
-       Nodo nodo = new Nodo (columna1, columna2);
-       if ( cabeza.getLigaFinal() != null ) cabeza.getLigaFinal().setLiga(nodo);
-       else cabeza.setLigaInicio(nodo);
-       cabeza.setLigaFinal(nodo);
-       cabeza.setnFilas(cabeza.getnFilas()+1);
-    }
-    
     public Nodo getPrimero () {
         return cabeza.getLigaInicio();
     }
@@ -42,5 +34,19 @@ class Lista {
     
     public boolean estaVacia () {
         return cabeza.getLigaInicio() == null && null == cabeza.getLigaFinal();
+    }
+    
+    public boolean insertarNodo (Nodo nodo) {
+       if (nodo.getColumna1() < 0 || nodo.getColumna2() < 0) {
+           System.out.println("Dato negativo, no puede agregarse");
+           return false;
+       }
+       if ( cabeza.getLigaFinal() != null ) 
+           cabeza.getLigaFinal().setLiga(nodo);
+       else 
+           cabeza.setLigaInicio(nodo);
+       cabeza.setLigaFinal(nodo);
+       cabeza.setnFilas(cabeza.getnFilas()+1);
+       return true;
     }
 }
