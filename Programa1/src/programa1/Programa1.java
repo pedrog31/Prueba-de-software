@@ -16,8 +16,7 @@ public class Programa1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        org.junit.runner.JUnitCore.main("pruebasPrograma1.PruebaListaLigada");
-        //Result result = JUnitCore.runClasses (PruebaListaLigada.class);
+        
     }
     
 }

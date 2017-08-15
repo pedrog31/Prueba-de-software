@@ -60,6 +60,7 @@ public class Lector {
             }
         }else{
             System.out.println("El archivo está vacío.");
+            return null;
         }
         
         return salida;

@@ -5,7 +5,6 @@
  */
 package programa1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,9 +12,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
-import programa1.Lector;
 
 /**
  *
@@ -59,9 +55,16 @@ public class PruebaLector {
     public void testLeerDatosArchivoVacio() throws FileNotFoundException{
         l = new Lector("./archivos de prueba/archivo vacio.txt");
         lista = l.leerDatos();
-        assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
+        assertNull(lista);
     }
-
+    
+    /*@Test
+    public void testLeerDatosArchivoVacio() throws FileNotFoundException{
+        l = new Lector("./archivos de prueba/archivo vacio.txt");
+        lista = l.leerDatos();
+        assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
+    }*/
+    
     @Test
     public void testLeerDatosArchivoCaracteresInvalidos() throws FileNotFoundException{
         l = new Lector("./archivos de prueba/archivo caracteres invalidos.txt");
@@ -75,7 +78,6 @@ public class PruebaLector {
         lista = l.leerDatos();
         assertEquals(lista.getCabeza().getnFilas(), listaVacia.getCabeza().getnFilas());
     }
-    
     @Test
     public void testLeerDatosArchivoTresColumnas() throws FileNotFoundException{
         l = new Lector("./archivos de prueba/archivo tres columnas.txt");
