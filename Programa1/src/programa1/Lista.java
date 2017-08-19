@@ -41,9 +41,9 @@ class Lista {
            System.out.println("Dato negativo, no puede agregarse");
            return false;
        }
-       if ( cabeza.getLigaFinal() != null ) 
+       //if ( cabeza.getLigaFinal() != null ) 
            cabeza.getLigaFinal().setLiga(nodo);
-       else 
+       //else 
            cabeza.setLigaInicio(nodo);
        cabeza.setLigaFinal(nodo);
        cabeza.setnFilas(cabeza.getnFilas()+1);
