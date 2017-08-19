@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import javax.naming.spi.DirStateFactory.Result;
-import org.junit.*;
 /**
  *
  * @author pedrog31
