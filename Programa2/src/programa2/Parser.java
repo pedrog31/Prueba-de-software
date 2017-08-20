@@ -42,9 +42,8 @@ public class Parser {
     }
     
     public boolean isClass(String line){
-        boolean output = false;
-        
-        return output;
+        boolean result = line.contains("class");
+        return result;
     }
     
     public boolean isMethod(String line){
