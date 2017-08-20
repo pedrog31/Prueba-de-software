@@ -42,12 +42,11 @@ public class Reader {
             throw ex;
         }
         String linea;
-        boolean falloEncontrado = false;
+        Parser parser = new Parser();
         if (archivo.hasNextLine()) {
-            while (archivo.hasNextLine() && !falloEncontrado){
+            while (archivo.hasNextLine()){
                 linea = archivo.nextLine();
-                
-                //llamar Parser.identificar(linea);
+                parser.identify(linea);
             }
         }else{
             System.out.println("El archivo está vacío.");
