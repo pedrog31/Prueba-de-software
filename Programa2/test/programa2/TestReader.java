@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class TestReader {
     
-    private Reader l;
+    private Reader reader;
     
     public TestReader() {
     }
@@ -43,11 +43,19 @@ public class TestReader {
     
     @Test(expected = java.io.FileNotFoundException.class)
     public void testLeerDatosArchivoInexistente() throws FileNotFoundException{
-        l = new Reader("./archivos de prueba/archivo que no existe.txt");
+        reader = new Reader("./archivos de prueba/archivo que no existe.txt");
+        reader.readData();
     }
     
     @Test
     public void testLeerDatosArchivoVacio() throws FileNotFoundException{
-        l = new Reader("./archivos de prueba/archivo vacio.txt");
+        reader = new Reader("./archivos de prueba/archivo vacio.txt");
+        reader.readData();
+    }
+    
+    @Test
+    public void testLeerDatosCorrectos() throws FileNotFoundException{
+        reader = new Reader("./archivos de prueba/datos.txt");
+        reader.readData();
     }
 }
