@@ -8,6 +8,7 @@ package programa2;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -111,7 +112,7 @@ public class ParserTest {
     @Test
     public void testIsClass() {
         System.out.println("isClass");
-        String line1 = "public class estoEsUnaClase";
+        String line1 = "public class estoEsUnaClase {";
         String line2 = "while (x != true) {";
         Parser instance = new Parser();
         boolean expResult = false;
@@ -170,13 +171,13 @@ public class ParserTest {
     @Test
     public void testCountBySemiColon() {
         System.out.println("countBySemiColon");
-        String line = "";
+        String[] line = {"x = 10;","public class estoEsUnaClase {","while (x != true) {", "for (x = 0; x <= 10; x++) {"};
         Parser instance = new Parser();
-        int expResult = 0;
-        int result = instance.countBySemiColon(line);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int[] expResult = {1,0,0,2};
+        int [] result = new int[4];
+        for (int i=0; i<4; i++)
+            result[i] = instance.countBySemiColon(line[i]);
+        Assert.assertArrayEquals(expResult, result);
     }
 
     /**
