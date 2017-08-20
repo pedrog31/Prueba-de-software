@@ -65,9 +65,14 @@ public class Parser {
     }
     
     public int countBySemiColon(String line){
-        int output = 0;
-        
-        return output;
+        int position = 0;
+        int count = 0;
+        int lenght = line.length();
+        while (position != -1) {
+            position = line.indexOf(";", position+1);
+            count ++;
+        }
+        return count-1;
     }
     
     public String detectString(String line){
