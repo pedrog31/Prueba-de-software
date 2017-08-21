@@ -97,4 +97,32 @@ public class Parser {
         
         return output;
     }
+    
+    public int countReservedWords (String line) {
+        int count = 0;
+        int lenght = line.length();
+        int position = line.indexOf("while");
+        while (position != -1) {
+            position = line.indexOf("while", position+1);
+            System.out.println(position);
+            count ++;
+        }
+        position = line.indexOf("if");
+        while (position != -1) {
+             position = line.indexOf("if", position+1);
+            count ++;
+        }
+        position = line.indexOf("switch");
+        while (position != -1) {
+            position = line.indexOf("switch", position+1);
+            System.out.println(position);
+            count ++;
+        }
+        position = line.indexOf("for");
+        while (position != -1) {
+            position = line.indexOf("for", position+1);
+            count ++;
+        }
+        return count;
+    }
 }

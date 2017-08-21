@@ -164,11 +164,12 @@ public class ParserTest {
             "while (x >=10) {",
             "if (x == 10  || y.equals(result)) {",
             "do {",
-            "if (! (x<2 &&  == 10  || y.equals(result))) {"};
+            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {"};
         Parser instance = new Parser();
-        int[] expResult = {0,0,0,0,1,0,1,0,2};
-        int [] result = new int[9];
-        for (int i=0; i < 9; i++)
+        int[] expResult = {0,0,0,0,1,0,1,0,2,4};
+        int [] result = new int[expResult.length];
+        for (int i=0; i < expResult.length; i++)
             result[i] = instance.countConditional(lines[i]);
         Assert.assertArrayEquals(expResult, result);
     }
@@ -185,8 +186,8 @@ public class ParserTest {
             "for (x = 0; x <= 10; x++) {"};
         Parser instance = new Parser();
         int[] expResult = {1,0,0,2};
-        int [] result = new int[4];
-        for (int i=0; i<4; i++)
+        int [] result = new int[expResult.length];
+        for (int i=0; i<expResult.length; i++)
             result[i] = instance.countBySemiColon(lines[i]);
         Assert.assertArrayEquals(expResult, result);
     }
@@ -219,6 +220,31 @@ public class ParserTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of countReservedWords method, of class Parser.
+     */
+    @Test
+    public void testCountReservedWords() {
+        System.out.println("countReservedWords");
+        String[] lines = {"x = 10;",
+            "public class estoEsUnaClase {",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {",
+            "if (x<2 && y == 2) {",
+            "while (x >=10) {",
+            "if (x == 10  || y.equals(result)) {",
+            "do {",
+            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
+            "switch (y) {"};
+        Parser instance = new Parser();
+        int[] expResult = {0,0,1,1,1,1,1,0,1,1,1};
+        int [] result = new int[expResult.length];
+        for (int i=0; i < expResult.length; i++)
+            result[i] = instance.countReservedWords(lines[i]);
+        assertArrayEquals(expResult, result);
     }
 
 }
