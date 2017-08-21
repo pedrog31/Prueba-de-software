@@ -140,14 +140,24 @@ public class ParserTest {
      */
     @Test
     public void testCountLines() {
-        System.out.println("countLines");
-        String line = "";
+        System.out.println("CountLines");
+        String[] lines = {"x = 10;",
+            "public class estoEsUnaClase {",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {",
+            "if (x<2 && y == 2) {",
+            "while (x >=10) {",
+            "if (x == 10  || y.equals(result)) {",
+            "do {",
+            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
+            "switch (y) {"};
         Parser instance = new Parser();
-        int expResult = 0;
-        int result = instance.countLines(line);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int[] expResult = {1,0,1,3,2,1,2,0,3,5,1};
+        int [] result = new int[expResult.length];
+        for (int i=0; i < expResult.length; i++)
+            result[i] = instance.countLines(lines[i]);
+        Assert.assertArrayEquals(expResult, result);
     }
 
     /**
