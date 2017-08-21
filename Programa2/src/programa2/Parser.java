@@ -122,7 +122,6 @@ public class Parser {
         while (position != -1) {
             position = line.indexOf("for", position+1);
             count ++;
-            
         }
         return count;
     }
