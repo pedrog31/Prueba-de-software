@@ -66,7 +66,6 @@ public class Parser {
         int lenght = line.length();
         while (position != -1) {
             position = line.indexOf("&&", position+1);
-            System.out.println(position);
             count ++;
         }
         position = line.indexOf("||");

@@ -142,14 +142,14 @@ public class ParserTest {
     public void testCountLines() {
         System.out.println("CountLines");
         String[] lines = {"x = 10;",
-            "public class estoEsUnaClase {",
+            "       public class estoEsUnaClase {",
             "while (x != true) {",
-            "for (x = 0; x <= 10; x++) {",
+            "   for (x = 0; x <= 10; x++) {",
             "if (x<2 && y == 2) {",
             "while (x >=10) {",
             "if (x == 10  || y.equals(result)) {",
             "do {",
-            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "       if (! (x<2 && y == 10  || y.equals(result))) {",
             "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
             "switch (y) {"};
         Parser instance = new Parser();
@@ -174,8 +174,8 @@ public class ParserTest {
             "while (x >=10) {",
             "if (x == 10  || y.equals(result)) {",
             "do {",
-            "if (! (x<2 && y == 10  || y.equals(result))) {",
-            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {"};
+            "       if (! (x<2 && y == 10  || y.equals(result))) {",
+            "       if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {"};
         Parser instance = new Parser();
         int[] expResult = {0,0,0,0,1,0,1,0,2,4};
         int [] result = new int[expResult.length];
@@ -191,7 +191,7 @@ public class ParserTest {
     public void testCountBySemiColon() {
         System.out.println("countBySemiColon");
         String[] lines = {"x = 10;",
-            "public class estoEsUnaClase {",
+            "       public class estoEsUnaClase {",
             "while (x != true) {",
             "for (x = 0; x <= 10; x++) {"};
         Parser instance = new Parser();
@@ -244,7 +244,7 @@ public class ParserTest {
             "for (x = 0; x <= 10; x++) {",
             "if (x<2 && y == 2) {",
             "while (x >=10) {",
-            "if (x == 10  || y.equals(result)) {",
+            "       if (x == 10  || y.equals(result)) {",
             "do {",
             "if (! (x<2 && y == 10  || y.equals(result))) {",
             "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
