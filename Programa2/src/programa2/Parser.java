@@ -59,13 +59,24 @@ public class Parser {
     }
     
     public int countConditional(String line){
-        int output = 0;
-        
-        return output;
+        int position = line.indexOf("&&");
+        int count = 0;
+        int lenght = line.length();
+        while (position != -1) {
+            position = line.indexOf("&&", position+1);
+            System.out.println(position);
+            count ++;
+        }
+        position = line.indexOf("||");
+        while (position != -1) {
+            position = line.indexOf("||", position+1);
+            count ++;
+        }
+        return count;
     }
     
     public int countBySemiColon(String line){
-        int position = 0;
+        int position = line.indexOf(";");
         int count = 0;
         int lenght = line.length();
         while (position != -1) {

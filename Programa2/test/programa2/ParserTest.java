@@ -156,13 +156,21 @@ public class ParserTest {
     @Test
     public void testCountConditional() {
         System.out.println("countConditional");
-        String line = "";
+        String[] lines = {"x = 10;",
+            "public class estoEsUnaClase {",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {",
+            "if (x<2 && y == 2) {",
+            "while (x >=10) {",
+            "if (x == 10  || y.equals(result)) {",
+            "do {",
+            "if (! (x<2 &&  == 10  || y.equals(result))) {"};
         Parser instance = new Parser();
-        int expResult = 0;
-        int result = instance.countConditional(line);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int[] expResult = {0,0,0,0,1,0,1,0,2};
+        int [] result = new int[9];
+        for (int i=0; i < 9; i++)
+            result[i] = instance.countConditional(lines[i]);
+        Assert.assertArrayEquals(expResult, result);
     }
 
     /**
@@ -171,12 +179,15 @@ public class ParserTest {
     @Test
     public void testCountBySemiColon() {
         System.out.println("countBySemiColon");
-        String[] line = {"x = 10;","public class estoEsUnaClase {","while (x != true) {", "for (x = 0; x <= 10; x++) {"};
+        String[] lines = {"x = 10;",
+            "public class estoEsUnaClase {",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {"};
         Parser instance = new Parser();
         int[] expResult = {1,0,0,2};
         int [] result = new int[4];
         for (int i=0; i<4; i++)
-            result[i] = instance.countBySemiColon(line[i]);
+            result[i] = instance.countBySemiColon(lines[i]);
         Assert.assertArrayEquals(expResult, result);
     }
 
