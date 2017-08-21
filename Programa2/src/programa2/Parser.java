@@ -54,7 +54,9 @@ public class Parser {
     
     public int countLines(String line){
         int output = 0;
-        
+        output += this.countReservedWords(line);
+        output += this.countBySemiColon(line);
+        output += this.countConditional(line);
         return output;
     }
     
@@ -83,7 +85,7 @@ public class Parser {
             position = line.indexOf(";", position+1);
             count ++;
         }
-        return count-1;
+        return count;
     }
     
     public String detectString(String line){
@@ -122,7 +124,6 @@ public class Parser {
         while (position != -1) {
             position = line.indexOf("for", position+1);
             count ++;
-            
         }
         return count;
     }
