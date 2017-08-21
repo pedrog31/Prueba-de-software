@@ -47,12 +47,6 @@ public class Parser {
     }
     
     public boolean isMethod(String line){
-        //Spaces or tabs at the start of the line "( |\\t)*"
-        //Access modifiers "((public|private|protected){1} {1}){0,1}"
-        //Type of return "[a-zA-Z]+"
-        //Space between type of return and name of method " {1}"
-        //Name of method "[a-zA-Z]+"
-        //Open parenthesis for params "[(]{1}"
         if(line.matches("^( |\\t)*" //Spaces or tabs at the start of the line
                 + "((public|private|protected){1} {1}){0,1}" //Access modifiers
                 + "[a-zA-Z]+ {1}" //Type of return
