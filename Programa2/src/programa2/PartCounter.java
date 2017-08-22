@@ -47,5 +47,11 @@ public class PartCounter {
         this.items = items;
     }
     
+    public void addLines(int l) {
+        lines = lines + l;
+    }
     
+    public void addItem() {
+        items = items + 1;
+    }
 }

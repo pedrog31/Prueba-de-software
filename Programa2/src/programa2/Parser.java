@@ -37,19 +37,49 @@ public class Parser {
         this.isInComment = isInComment;
     }
     
-    public void identify(String line){
+    public void identify(String line) {
+        String aux = "";
+        aux = detectComment(line);
+        
+        if (!parts.isEmpty() && !line.equals(aux)) {
+            parts.get(parts.size() - 1).addLines(1);
+        } else {
+            line = detectString(aux);
+            aux = getClass(line);
+            if (!aux.equals(line)) {
+                parts.add(new PartCounter(aux, 1, 0));
+            } else if (isMethod(line)) {
+                parts.get(parts.size() - 1).addItem();
+                parts.get(parts.size() - 1).addLines(1);
+            } else {
+                parts.get(parts.size() - 1).addLines(countLines(line));
+            }
+        }
         
     }
     
-    public boolean isClass(String line){
-        boolean result = line.contains("class");
-        return result;
+    public String getClass(String line){
+        int posicionInicial = line.indexOf("class ");
+        if (posicionInicial == -1) {
+            return line;
+        }
+        int posicionFinal = line.indexOf(" ", posicionInicial + 6);
+        return line.substring(posicionInicial + 6, posicionFinal);
     }
     
     public boolean isMethod(String line){
-        boolean output = false;
-        
-        return output;
+        if(line.matches("^( |\\t)*" //Spaces or tabs at the start of the line
+                + "((public|private|protected){1} {1}){0,1}" //Access modifiers
+                + "[a-zA-Z]+ {1}" //Type of return
+                + "[a-zA-Z]+" //Name of method
+                + "[(]{1}"  //Open parenthesis for params 
+                + "([a-zA-Z]+ {1}[a-zA-Z]+([,]{1} {1}[a-zA-Z]+ {1}[a-zA-Z]+)*)*" //params
+                + "[)]{1} {1}"  //Close parenthesis
+                + "[{]{1}$")){ //end of the line
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public int countLines(String line){
@@ -66,7 +96,6 @@ public class Parser {
         int lenght = line.length();
         while (position != -1) {
             position = line.indexOf("&&", position+1);
-            System.out.println(position);
             count ++;
         }
         position = line.indexOf("||");

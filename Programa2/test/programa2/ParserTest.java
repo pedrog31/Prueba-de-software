@@ -93,48 +93,114 @@ public class ParserTest {
         fail("The test case is a prototype.");
     }
 
+    //*****Start of tests of isMethod*****
+    
     /**
-     * Test of identify method, of class Parser.
+     * Test of isMethod method, of class Parser.
+     * Line with white spaces and access modifier.
      */
     @Test
-    public void testIdentify() {
-        System.out.println("identify");
-        String line = "";
-        Parser instance = new Parser();
-        instance.identify(line);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testIsMethod_LineWithWhiteSpaces() {
+        String line = "        public void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
     }
-
+    
     /**
-     * Test of isClass method, of class Parser.
+     * Test of isMethod method, of class Parser.
+     * Line with tabs and access modifier.
      */
     @Test
-    public void testIsClass() {
-        System.out.println("isClass");
-        String line1 = "public class estoEsUnaClase {";
-        String line2 = "while (x != true) {";
-        Parser instance = new Parser();
-        boolean expResult = false;
-        boolean result = instance.isClass(line2);
+    public void testIsMethod_LineWithTabs() {
+        String line = "\t\tpublic void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with method and access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithMethodAndModifier() {
+        String line = "public void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
         assertEquals(expResult, result);
     }
 
     /**
      * Test of isMethod method, of class Parser.
+     * Line with method and without access modifier.
      */
     @Test
-    public void testIsMethod() {
-        System.out.println("isMethod");
-        String line = "";
-        Parser instance = new Parser();
-        boolean expResult = false;
-        boolean result = instance.isMethod(line);
+    public void testIsMethod_LineWithMethodAndWithoutModifier() {
+        String line = "void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with white spaces and without access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithWhiteSpacesWithoutModifier() {
+        String line = "        void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with tabs, params and without access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithTabsParamsWithoutModifier() {
+        String line = "\t\tvoid method(int x, String message) {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with tabs and access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithTabsWithoutModifier() {
+        String line = "\t\tvoid method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line that isn't a method.
+     */
+    @Test
+    public void testIsMethod_WrongLine() {
+        String line = "int x = 3;";
+        Parser parser = new Parser();
+        boolean expResult = false;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    //End of test of isMethod
+    
     /**
      * Test of countLines method, of class Parser.
      */
@@ -142,14 +208,14 @@ public class ParserTest {
     public void testCountLines() {
         System.out.println("CountLines");
         String[] lines = {"x = 10;",
-            "public class estoEsUnaClase {",
+            "       public class estoEsUnaClase {",
             "while (x != true) {",
-            "for (x = 0; x <= 10; x++) {",
+            "   for (x = 0; x <= 10; x++) {",
             "if (x<2 && y == 2) {",
             "while (x >=10) {",
             "if (x == 10  || y.equals(result)) {",
             "do {",
-            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "       if (! (x<2 && y == 10  || y.equals(result))) {",
             "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
             "switch (y) {"};
         Parser instance = new Parser();
@@ -174,8 +240,8 @@ public class ParserTest {
             "while (x >=10) {",
             "if (x == 10  || y.equals(result)) {",
             "do {",
-            "if (! (x<2 && y == 10  || y.equals(result))) {",
-            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {"};
+            "       if (! (x<2 && y == 10  || y.equals(result))) {",
+            "       if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {"};
         Parser instance = new Parser();
         int[] expResult = {0,0,0,0,1,0,1,0,2,4};
         int [] result = new int[expResult.length];
@@ -191,7 +257,7 @@ public class ParserTest {
     public void testCountBySemiColon() {
         System.out.println("countBySemiColon");
         String[] lines = {"x = 10;",
-            "public class estoEsUnaClase {",
+            "       public class estoEsUnaClase {",
             "while (x != true) {",
             "for (x = 0; x <= 10; x++) {"};
         Parser instance = new Parser();
@@ -260,7 +326,7 @@ public class ParserTest {
             "for (x = 0; x <= 10; x++) {",
             "if (x<2 && y == 2) {",
             "while (x >=10) {",
-            "if (x == 10  || y.equals(result)) {",
+            "       if (x == 10  || y.equals(result)) {",
             "do {",
             "if (! (x<2 && y == 10  || y.equals(result))) {",
             "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
@@ -272,5 +338,42 @@ public class ParserTest {
             result[i] = instance.countReservedWords(lines[i]);
         assertArrayEquals(expResult, result);
     }
-
+    /**
+     * Test of getClass method, of class Parser.
+     */
+    @Test
+    public void testGetClass() {
+        System.out.println("getClass");
+        String[] lines = {"x = 10;",
+            "public class estoEsUnaClasePublica {",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {",
+            "if (x<2 && y == 2) {",
+            "while (x >=10) {",
+            "       if (x == 10  || y.equals(result)) {",
+            "do {",
+            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
+            "switch (y) {",
+            "class EstoEsUnaClaseProtegida {",
+            "private class EstoEsUnaClasePrivada {"};
+        Parser instance = new Parser();
+        String [] expResult = {"x = 10;",
+            "estoEsUnaClasePublica",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {",
+            "if (x<2 && y == 2) {",
+            "while (x >=10) {",
+            "       if (x == 10  || y.equals(result)) {",
+            "do {",
+            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
+            "switch (y) {",
+            "EstoEsUnaClaseProtegida",
+            "EstoEsUnaClasePrivada"};
+        String [] result = new String[expResult.length];
+        for (int i=0; i < expResult.length; i++)
+            result[i] = instance.getClass(lines[i]);
+        assertArrayEquals(expResult, result);
+    }
 }
