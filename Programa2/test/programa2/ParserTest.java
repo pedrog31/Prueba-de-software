@@ -222,11 +222,27 @@ public class ParserTest {
      */
     @Test
     public void testDetectComment() {
+        
         System.out.println("detectComment");
-        String line = "";
+        String[] lines = {"x = 10;",
+            "x = 10; //variable x = 10",
+            "if (x<2 /*&& y == 2*/) {",
+            "while (x != true) {/*ciclo que repite mientras \n" +
+"                            la variable sea verdadera*/"};
         Parser instance = new Parser();
-        String expResult = "";
-        String result = instance.detectComment(line);
+        String[] expResult = {"x = 10;","x = 10; ","if (x<2 ) {","while (x != true) {"};
+        String [] result = new String[expResult.length];
+        for (int i=0; i<expResult.length; i++)
+            result[i] = instance.detectComment(lines[i]);
+        Assert.assertArrayEquals(expResult, result);
+        
+        
+        
+       
+        
+        
+        String line = "";
+      
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
