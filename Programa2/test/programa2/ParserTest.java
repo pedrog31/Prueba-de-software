@@ -108,19 +108,110 @@ public class ParserTest {
 
     /**
      * Test of isMethod method, of class Parser.
+     * Line with white spaces and access modifier.
      */
     @Test
-    public void testIsMethod() {
-        System.out.println("isMethod");
-        String line = "";
-        Parser instance = new Parser();
-        boolean expResult = false;
-        boolean result = instance.isMethod(line);
+    public void testIsMethod_LineWithWhiteSpaces() {
+        String line = "        public void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with tabs and access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithTabs() {
+        String line = "\t\tpublic void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with method and access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithMethodAndModifier() {
+        String line = "public void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
     }
 
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with method and without access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithMethodAndWithoutModifier() {
+        String line = "void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with white spaces and without access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithWhiteSpacesWithoutModifier() {
+        String line = "        void method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with tabs, params and without access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithTabsParamsWithoutModifier() {
+        String line = "\t\tvoid method(int x, String message) {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line with tabs and access modifier.
+     */
+    @Test
+    public void testIsMethod_LineWithTabsWithoutModifier() {
+        String line = "\t\tvoid method() {";
+        Parser parser = new Parser();
+        boolean expResult = true;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isMethod method, of class Parser.
+     * Line that isn't a method.
+     */
+    @Test
+    public void testIsMethod_WrongLine() {
+        String line = "int x = 3;";
+        Parser parser = new Parser();
+        boolean expResult = false;
+        boolean result = parser.isMethod(line);
+        assertEquals(expResult, result);
+    }
+    
+    //End of test of isMethod
+    
     /**
      * Test of countLines method, of class Parser.
      */
@@ -242,7 +333,6 @@ public class ParserTest {
             result[i] = instance.countReservedWords(lines[i]);
         assertArrayEquals(expResult, result);
     }
-
     /**
      * Test of getClass method, of class Parser.
      */
@@ -281,5 +371,4 @@ public class ParserTest {
             result[i] = instance.getClass(lines[i]);
         assertArrayEquals(expResult, result);
     }
-
 }
