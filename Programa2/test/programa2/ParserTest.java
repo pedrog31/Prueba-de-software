@@ -93,7 +93,6 @@ public class ParserTest {
         fail("The test case is a prototype.");
     }
 
-    
     //*****Start of tests of isMethod*****
     
     /**
