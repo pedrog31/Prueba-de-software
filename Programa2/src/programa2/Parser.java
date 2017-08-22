@@ -119,9 +119,9 @@ public class Parser {
     
     public String detectString(String line){
         int pos = line.indexOf("\"");
-        int end = line.indexOf("\"",pos);
+        int end = line.indexOf("\"",pos+1);
         if(pos != -1 && end != -1){
-            line = line.substring(pos, end);
+            line = line.substring(0, pos)+line.substring(end+1, line.length());
             return line;
         }
         return line;
@@ -132,35 +132,17 @@ public class Parser {
         int pos2 = line.indexOf("/*");
         int end = line.indexOf("*/");
         if(pos1 != -1){
-            line = line.substring(pos1);
+            line = line.substring(0,pos1);
             return line;
         }else if(pos2 != -1){
             isInComment = true;
             if(end != -1 && pos2 < end){
-                line = line.substring(pos2,end);
+                line = line.substring(0,pos2)+line.substring(end+2,line.length());
                 isInComment = false;
             }else{return "";}
             return line;
         }
         return line;
-               
-        /*if(line.matches(".*[//]")){
-            pos = line.indexOf("//");
-            line = line.substring(pos);
-        }else if(line.matches(".*[/*].*")){
-            isInComment = true;
-            pos = line.indexOf("/*");
-            
-            //line = line.substring(pos);
-            if(line.matches("[\w]*[^/$]")){
-                isInComment = true;
-                return "";
-            }else{
-                end = line.indexOf("/");
-                line = line.substring(pos,end);
-                isInComment = false;
-            }
-        }*/
     }
     
     public int countReservedWords (String line) {
