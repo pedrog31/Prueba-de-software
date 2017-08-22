@@ -107,20 +107,6 @@ public class ParserTest {
     }
 
     /**
-     * Test of isClass method, of class Parser.
-     */
-    @Test
-    public void testIsClass() {
-        System.out.println("isClass");
-        String line1 = "public class estoEsUnaClase {";
-        String line2 = "while (x != true) {";
-        Parser instance = new Parser();
-        boolean expResult = false;
-        boolean result = instance.isClass(line2);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of isMethod method, of class Parser.
      */
     @Test
@@ -254,6 +240,45 @@ public class ParserTest {
         int [] result = new int[expResult.length];
         for (int i=0; i < expResult.length; i++)
             result[i] = instance.countReservedWords(lines[i]);
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of getClass method, of class Parser.
+     */
+    @Test
+    public void testGetClass() {
+        System.out.println("getClass");
+        String[] lines = {"x = 10;",
+            "public class estoEsUnaClasePublica {",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {",
+            "if (x<2 && y == 2) {",
+            "while (x >=10) {",
+            "       if (x == 10  || y.equals(result)) {",
+            "do {",
+            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
+            "switch (y) {",
+            "class EstoEsUnaClaseProtegida {",
+            "private class EstoEsUnaClasePrivada {"};
+        Parser instance = new Parser();
+        String [] expResult = {"x = 10;",
+            "estoEsUnaClasePublica",
+            "while (x != true) {",
+            "for (x = 0; x <= 10; x++) {",
+            "if (x<2 && y == 2) {",
+            "while (x >=10) {",
+            "       if (x == 10  || y.equals(result)) {",
+            "do {",
+            "if (! (x<2 && y == 10  || y.equals(result))) {",
+            "if (! (x<2 || y == 10  || y.equals(result) && x<2 || y == 10) {",
+            "switch (y) {",
+            "EstoEsUnaClaseProtegida",
+            "EstoEsUnaClasePrivada"};
+        String [] result = new String[expResult.length];
+        for (int i=0; i < expResult.length; i++)
+            result[i] = instance.getClass(lines[i]);
         assertArrayEquals(expResult, result);
     }
 
