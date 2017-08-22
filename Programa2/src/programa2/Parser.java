@@ -41,9 +41,13 @@ public class Parser {
         
     }
     
-    public boolean isClass(String line){
-        boolean result = line.contains("class");
-        return result;
+    public String getClass(String line){
+        int posicionInicial = line.indexOf("class ");
+        if (posicionInicial == -1) {
+            return line;
+        }
+        int posicionFinal = line.indexOf(" ", posicionInicial + 6);
+        return line.substring(posicionInicial + 6, posicionFinal);
     }
     
     public boolean isMethod(String line){
@@ -75,7 +79,6 @@ public class Parser {
         int lenght = line.length();
         while (position != -1) {
             position = line.indexOf("&&", position+1);
-            System.out.println(position);
             count ++;
         }
         position = line.indexOf("||");
