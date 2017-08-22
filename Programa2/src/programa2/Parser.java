@@ -37,7 +37,24 @@ public class Parser {
         this.isInComment = isInComment;
     }
     
-    public void identify(String line){
+    public void identify(String line) {
+        String aux = "";
+        aux = detectComment(line);
+        
+        if (!parts.isEmpty() && !line.equals(aux)) {
+            parts.get(parts.size() - 1).addLines(1);
+        } else {
+            line = detectString(aux);
+            aux = getClass(line);
+            if (!aux.equals(line)) {
+                parts.add(new PartCounter(aux, 1, 0));
+            } else if (isMethod(line)) {
+                parts.get(parts.size() - 1).addItem();
+                parts.get(parts.size() - 1).addLines(1);
+            } else {
+                parts.get(parts.size() - 1).addLines(countLines(line));
+            }
+        }
         
     }
     
