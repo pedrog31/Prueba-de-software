@@ -94,19 +94,6 @@ public class ParserTest {
     }
 
     /**
-     * Test of identify method, of class Parser.
-     */
-    @Test
-    public void testIdentify() {
-        System.out.println("identify");
-        String line = "";
-        Parser instance = new Parser();
-        instance.identify(line);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of isClass method, of class Parser.
      */
     @Test
