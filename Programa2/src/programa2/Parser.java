@@ -51,7 +51,7 @@ public class Parser {
             } else if (isMethod(line)) {
                 parts.get(parts.size() - 1).addItem();
                 parts.get(parts.size() - 1).addLines(1);
-            } else {
+            } else if(!parts.isEmpty()){
                 parts.get(parts.size() - 1).addLines(countLines(line));
             }
         }
