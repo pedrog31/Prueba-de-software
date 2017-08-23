@@ -58,7 +58,7 @@ public class Parser {
         
     }
     
-    public String getClass(String line){
+    public String getClass(String line) {
         int posicionInicial = line.indexOf("class ");
         if (posicionInicial == -1) {
             return line;
@@ -67,7 +67,7 @@ public class Parser {
         return line.substring(posicionInicial + 6, posicionFinal);
     }
     
-    public boolean isMethod(String line){
+    public boolean isMethod(String line) {
         if(line.matches("^( |\\t)*" //Spaces or tabs at the start of the line
                 + "((public|private|protected){1} {1}){0,1}" //Access modifiers
                 + "[a-zA-Z]+ {1}" //Type of return
@@ -75,14 +75,14 @@ public class Parser {
                 + "[(]{1}"  //Open parenthesis for params 
                 + "([a-zA-Z]+ {1}[a-zA-Z]+([,]{1} {1}[a-zA-Z]+ {1}[a-zA-Z]+)*)*" //params
                 + "[)]{1} {1}"  //Close parenthesis
-                + "[{]{1}$")){ //end of the line
+                + "[{]{1}$")) { //end of the line
             return true;
         } else {
             return false;
         }
     }
     
-    public int countLines(String line){
+    public int countLines(String line) {
         int output = 0;
         output += this.countReservedWords(line);
         output += this.countBySemiColon(line);
@@ -90,7 +90,7 @@ public class Parser {
         return output;
     }
     
-    public int countConditional(String line){
+    public int countConditional(String line) {
         int position = line.indexOf("&&");
         int count = 0;
         int lenght = line.length();
@@ -106,7 +106,7 @@ public class Parser {
         return count;
     }
     
-    public int countBySemiColon(String line){
+    public int countBySemiColon(String line) {
         int position = line.indexOf(";");
         int count = 0;
         int lenght = line.length();
@@ -117,26 +117,26 @@ public class Parser {
         return count;
     }
     
-    public String detectString(String line){
+    public String detectString(String line) {
         int pos = line.indexOf("\"");
         int end = line.indexOf("\"",pos+1);
-        if(pos != -1 && end != -1){
+        if(pos != -1 && end != -1) {
             line = line.substring(0, pos)+line.substring(end+1, line.length());
             return line;
         }
         return line;
     }
     
-    public String detectComment(String line){
+    public String detectComment(String line) {
         int pos1 = line.indexOf("//");
         int pos2 = line.indexOf("/*");
         int end = line.indexOf("*/");
-        if(pos1 != -1){
+        if(pos1 != -1) {
             line = line.substring(0,pos1);
             return line;
-        }else if(pos2 != -1){
+        }else if(pos2 != -1) {
             isInComment = true;
-            if(end != -1 && pos2 < end){
+            if(end != -1 && pos2 < end) {
                 line = line.substring(0,pos2)+line.substring(end+2,line.length());
                 isInComment = false;
             }else{return "";}

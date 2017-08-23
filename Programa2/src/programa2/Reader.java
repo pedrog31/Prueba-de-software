@@ -44,7 +44,7 @@ public class Reader {
         String linea;
         Parser parser = new Parser();
         if (archivo.hasNextLine()) {
-            while (archivo.hasNextLine()){
+            while (archivo.hasNextLine()) {
                 linea = archivo.nextLine();
                 parser.identify(linea);
             }
