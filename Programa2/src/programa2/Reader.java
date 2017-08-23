@@ -16,8 +16,9 @@ import java.util.logging.Logger;
  * @author Daniel
  */
 public class Reader {
-    
+
     private String ruta;
+    private Parser parser;
 
     public Reader(String ruta) {
         this.ruta = ruta;
@@ -30,9 +31,8 @@ public class Reader {
     public void setRuta(String ruta) {
         this.ruta = ruta;
     }
-    
-    public void readData() throws FileNotFoundException{
-        
+
+    public void readData() throws FileNotFoundException {
         Scanner archivo;
         try {
             archivo = new Scanner(new File(ruta));
@@ -42,15 +42,24 @@ public class Reader {
             throw ex;
         }
         String linea;
-        Parser parser = new Parser();
+        parser = new Parser();
         if (archivo.hasNextLine()) {
             while (archivo.hasNextLine()) {
                 linea = archivo.nextLine();
                 parser.identify(linea);
             }
-        }else{
+        } else {
             System.out.println("El archivo está vacío.");
         }
-        
+
     }
+
+    public Parser getParser() {
+        return parser;
+    }
+
+    public void setParser(Parser parser) {
+        this.parser = parser;
+    }
+
 }

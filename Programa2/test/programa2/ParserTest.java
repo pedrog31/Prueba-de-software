@@ -38,63 +38,6 @@ public class ParserTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getParts method, of class Parser.
-     */
-//    @Test
-//    public void testGetParts() {
-//        System.out.println("getParts");
-//        Parser instance = new Parser();
-//        List<PartCounter> expResult = null;
-//        List<PartCounter> result = instance.getParts();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
-     * Test of setParts method, of class Parser.
-     */
-//    @Test
-//    public void testSetParts() {
-//        System.out.println("setParts");
-//        List<PartCounter> parts = null;
-//        Parser instance = new Parser();
-//        instance.setParts(parts);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
-     * Test of isIsInComment method, of class Parser.
-     */
-//    @Test
-//    public void testIsIsInComment() {
-//        System.out.println("isIsInComment");
-//        Parser instance = new Parser();
-//        boolean expResult = false;
-//        boolean result = instance.isIsInComment();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
-     * Test of setIsInComment method, of class Parser.
-     */
-//    @Test
-//    public void testSetIsInComment() {
-//        System.out.println("setIsInComment");
-//        boolean isInComment = false;
-//        Parser instance = new Parser();
-//        instance.setIsInComment(isInComment);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    //*****Start of tests of isMethod*****
-    
     /**
      * Test of isMethod method, of class Parser.
      * Line with white spaces and access modifier.
@@ -208,7 +151,7 @@ public class ParserTest {
     public void testCountLines() {
         System.out.println("CountLines");
         String[] lines = {"x = 10;",
-            "       public class estoEsUnaClase {",
+            "       public static class estoEsUnaClase {",
             "while (x != true) {",
             "   for (x = 0; x <= 10; x++) {",
             "if (x<2 && y == 2) {",
