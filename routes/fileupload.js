@@ -51,6 +51,7 @@ function stringToFloatArray(array) {
             errorMalFormato = true;
         }
     }
+    return array;
 }
 
 module.exports = router;
