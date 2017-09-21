@@ -12,9 +12,4 @@ router.get('/', function(req, res, next) {
     module.exports.matrix = items;*/
 });
 
-router.post('/data/', function(req, res, next) {
-    res.redirect('/data/');
-});
-
 module.exports = router;
-return module.exports;

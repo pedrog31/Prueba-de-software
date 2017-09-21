@@ -4,23 +4,27 @@ const index = require('./index');
 const fileU = require('./fileupload')
 
 var matrix = fileU.matrix;
-
+/*
 
 router.post('/data/', function(req, res, next) {
 
 
 
-
-    res.redirect('/data/');
+    res.redirect('/results/');
 });
+*/
 
+/*function calcular() {
+    var beta0 = parametrosRegresion()
+}
 
-function calcular() {
-    var
+function parametrosRegresion(matrix,column1,column2) {
+    var columnax = ;
+    var columnay;
 }
 
 
-var calcularRegresion = function() {
+var parametrosRegresion = function() {
     return function(tipoPrueba, matrix) {
         var columnax;
         var columnay;
@@ -82,12 +86,15 @@ var calcularRegresion = function() {
         promedioy = promedioy/contadorFilas;
         var beta1 = (sumatoriaxy - (contadorFilas * promediox * promedioy)) / (sumatoriaxdos - (contadorFilas *  promediox * promediox));
         var beta2 = promedioy - (beta1 * promediox);
+        var betas =  [beta1,beta2];
+        return betas;
+
         var yk = beta1 + (beta2 * 386);
         var r = ((n*sumatoriaxy)-(xsum*ysum))/(Math.sqrt((n*xsum2-Math.pow(xsum,2))(n*ysum2-Math.pow(ysum,2))));
 
     }
 }();
-var miTriangulo = new calcularRegresion(1,matrix);
+var miTriangulo = new calcularRegresion(1,matrix);*/
 
 
 
