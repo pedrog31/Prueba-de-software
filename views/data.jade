@@ -1,8 +1,35 @@
 extends layout
 
 block content
-  h1= these are the fucking data!!
-  p Welcome to #{items}
+  h1 these are the fucking data!!
+
+  table(border='1')
+  script.
+    var myArray    = new Array();
+        myArray[0] = "1";
+        myArray[1] = "2";
+        myArray[2] = "3";
+        myArray[3] = "4";
+        myArray[4] = "5";
+
+    for (var i=0; i<5; i++) {
+      document.write("<tr><td>Number " + i + " is:</td>");
+      document.write("<td>" + myArray[i] + "</td></tr>");
+    }
+
+
+  p #{items}
+
+  form(action='data' method='post' enctype='multipart/form-data')
+      p Columna 1:
+      input(type='text' name='column1')
+      br
+      p Columna 2:
+      input(type='text' name='column2')
+      br
+      br
+      input(type='submit' value='Calcular')
+
 
 
 

@@ -6,8 +6,22 @@ const fileU = require('./fileupload')
 var matrix = fileU.matrix;
 
 
+router.post('/data/', function(req, res, next) {
+
+
+
+
+    res.redirect('/data/');
+});
+
+
+function calcular() {
+    var
+}
+
+
 var calcularRegresion = function() {
-    return function(tipoPrueba, datos) {
+    return function(tipoPrueba, matrix) {
         var columnax;
         var columnay;
         var mensaje;
@@ -47,17 +61,19 @@ var calcularRegresion = function() {
         var promedioy = 0;
         var sumatoriaydos = 0;
         var sumatoriax = 0;
-        var sumatoria = 0;
+        var sumatoriay = 0;
 
-
-        while (contadorFilas < datos.length) {
-            var fila  = datos[contadorFilas];
+        while (contadorFilas < matrix.length) {
+            var fila  = matrix[contadorFilas];
             console.log(fila.toString())
-            console.log(datos.toString())
-            console.log(datos[contadorFilas].toString())
+            console.log(matrix.toString())
+            console.log(matrix[contadorFilas].toString())
 
+            sumatoriax = sumatoriax + fila[columnax];
+            sumatoriay = sumatoriay + fila[columnay];
             sumatoriaxy = sumatoriaxy + (fila[columnax]  * fila[columnay]);
-            sumatoriax2 = sumatoriaxdos + (fila[columnax] * fila[columnax]);
+            sumatoriaxdos = sumatoriaxdos + (fila[columnax] * fila[columnax]);
+            sumatoriaydos = sumatoriaydos + (fila[columnay] * fila[columnay]);
             promediox = promediox + fila[columnax];
             promedioy = promedioy + fila[columnay];
             contadorFilas++;
@@ -67,9 +83,11 @@ var calcularRegresion = function() {
         var beta1 = (sumatoriaxy - (contadorFilas * promediox * promedioy)) / (sumatoriaxdos - (contadorFilas *  promediox * promediox));
         var beta2 = promedioy - (beta1 * promediox);
         var yk = beta1 + (beta2 * 386);
+        var r = ((n*sumatoriaxy)-(xsum*ysum))/(Math.sqrt((n*xsum2-Math.pow(xsum,2))(n*ysum2-Math.pow(ysum,2))));
+
     }
 }();
-var miTriangulo = new calcularRegresion(1,leerArchivo(datos));
+var miTriangulo = new calcularRegresion(1,matrix);
 
 
 
@@ -96,9 +114,10 @@ function correlation(vectx,vecty) {
 router.get('/', function(req, res, next) {
 
 
-    //res.render('data', { items: matrix });
+    res.render('data', { items: matrix });
     console.log(matrix);
-    res.send('lawea');
+    //res.send(`data`);
+    //res.sendFile('./data.jade')
 });
 
 module.exports = router;
