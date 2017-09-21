@@ -4,6 +4,8 @@ var multer = require('multer');
 var upload = multer();
 var router = express.Router();
 
+var errorMalFormato = false;
+
 /* GET users listing. */
 /*router.post('/', function(req, res, next) {
 
@@ -21,8 +23,12 @@ router.post('/', upload.single('datos'), function(req, res, next) {
     var datos = req.file.buffer.toString();
     var matriz = leerArchivo(datos);
 
-
-    res.send(matriz);
+    if(errorMalFormato){
+        res.send("El archivo no posee el formato correcto.");
+    } else {
+        res.send(matriz);
+        //TODO: REEMPLAZAR POR UNA VISTA EN LA QUE SE VEA BIEN LA MATRIZ Y EL BOTÓN DE RESULTADOS
+    }
 });
 
 function leerArchivo(datos) {
@@ -35,33 +41,16 @@ function leerArchivo(datos) {
         matriz[i] = fila;
     }
 
-    //TODO: Hacer que se guarden como numeros y no como strings
-
     return matriz;
 }
 
 function stringToFloatArray(array) {
-    var error = false;
     for (var i = 0; i < array.length; i++) {
         array[i] = parseFloat(array[i]);
         if(isNaN(array[i])){
-            error = true;
+            errorMalFormato = true;
         }
     }
-
-    if (error) {
-        errorMalFormato();
-    } else{
-        return array;
-    }
 }
-
-function errorMalFormato() {
-
-}
-
-
-
-
 
 module.exports = router;
