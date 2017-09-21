@@ -29,7 +29,8 @@ function leerArchivo(datos) {
     var lineas = datos.split('\n');
     var matriz = [];
     for(var i = 0; i < lineas.length-1; i++){
-        var fila = stringToFloatArray(lineas[i]);
+        var fila = lineas[i].split(' ');
+        fila = stringToFloatArray(fila);
         console.log(fila);
         matriz[i] = fila;
     }
@@ -39,12 +40,11 @@ function leerArchivo(datos) {
     return matriz;
 }
 
-function stringToFloatArray(linea) {
+function stringToFloatArray(array) {
     var error = false;
-    var fila = linea.split(' ');
-    for (var i = 0; i < fila.length; i++) {
-        fila[i] = parseFloat(fila[i]);
-        if(isNaN(fila[i])){
+    for (var i = 0; i < array.length; i++) {
+        array[i] = parseFloat(array[i]);
+        if(isNaN(array[i])){
             error = true;
         }
     }
@@ -52,7 +52,7 @@ function stringToFloatArray(linea) {
     if (error) {
         errorMalFormato();
     } else{
-        return fila;
+        return array;
     }
 }
 
