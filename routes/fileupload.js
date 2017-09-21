@@ -26,8 +26,8 @@ router.post('/', upload.single('datos'), function(req, res, next) {
     if(errorMalFormato){
         res.send("El archivo no posee el formato correcto.");
     } else {
-        res.send(matriz);
-        //TODO: REEMPLAZAR POR UNA VISTA EN LA QUE SE VEA BIEN LA MATRIZ Y EL BOTÓN DE RESULTADOS
+        module.exports.matrix = matriz;
+        res.redirect('/data/');
     }
 });
 
