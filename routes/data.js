@@ -1,37 +1,77 @@
 var express = require('express');
 var router = express.Router();
-const matriz = require('./index');
+const index = require('./index');
+const fileU = require('./fileupload')
+
+var matrix = fileU.matrix;
 
 
-var items = [
-    [1, 2, 3, 4, 5],
-    [3, 4, 5, 6, 7],
-    [5, 6, 7, 8, 9]
-];
+var calcularRegresion = function() {
+    return function(tipoPrueba, datos) {
+        var columnax;
+        var columnay;
+        var mensaje;
+        switch (tipoPrueba) {
+            case 1:
+                mensaje = "between estimated proxy size and actual added and modified size";
+                console.log(mensaje);
+                columnax  = 1;
+                columnay = 2;
+                break;
+            case 2:
+                mensaje = "between estimated proxy size and actual development time";
+                console.log(mensaje);
+                columnax  = 1;
+                columnay = 4;
+                break;
+            case 3:
+                mensaje = "between plan added and modified size and actual added and modified size";
+                console.log(mensaje);
+                columnax  = 2;
+                columnay = 3;
+                break;
+            case 4:
+                mensaje = "between plan added and modified size and actual development time in";
+                console.log(mensaje);
+                columnax  = 2;
+                columnay = 4;
+                break;
+            default:
+                console.log ("Error, solo hay 4 tipos de pruebas");
+        }
 
-/*function sum(vect) {
-    var count = 0;
-    for (var i = 0; i < vect.length; i++) {
-        count = count + vect[i];
+        var contadorFilas = 0;
+        var sumatoriaxy = 0;
+        var sumatoriaxdos = 0;
+        var promediox = 0;
+        var promedioy = 0;
+        var sumatoriaydos = 0;
+        var sumatoriax = 0;
+        var sumatoria = 0;
+
+
+        while (contadorFilas < datos.length) {
+            var fila  = datos[contadorFilas];
+            console.log(fila.toString())
+            console.log(datos.toString())
+            console.log(datos[contadorFilas].toString())
+
+            sumatoriaxy = sumatoriaxy + (fila[columnax]  * fila[columnay]);
+            sumatoriax2 = sumatoriaxdos + (fila[columnax] * fila[columnax]);
+            promediox = promediox + fila[columnax];
+            promedioy = promedioy + fila[columnay];
+            contadorFilas++;
+        }
+        promediox = promediox/contadorFilas;
+        promedioy = promedioy/contadorFilas;
+        var beta1 = (sumatoriaxy - (contadorFilas * promediox * promedioy)) / (sumatoriaxdos - (contadorFilas *  promediox * promediox));
+        var beta2 = promedioy - (beta1 * promediox);
+        var yk = beta1 + (beta2 * 386);
     }
-    return count;
-}
+}();
+var miTriangulo = new calcularRegresion(1,leerArchivo(datos));
 
-function sumpow(vect) {
-    var count = 0;
-    for (var i = 0; i < vect.length; i++) {
-        count = count + Math.pow(vect[i],2);
-    }
-    return count;
-}
 
-function sumxy(vectx,vecty) {
-    var count = 0;
-    for (var i = 0; i < vectx.length; i++) {
-        count = count + vectx[i]*vecty[i];
-    }
-    return count;
-}*/
 
 function correlation(vectx,vecty) {
     var n = vectx.length;
@@ -54,7 +94,10 @@ function correlation(vectx,vecty) {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    console.log(matriz.matrix);
+
+
+    //res.render('data', { items: matrix });
+    console.log(matrix);
     res.send('lawea');
 });
 
