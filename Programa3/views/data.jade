@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Ingrese las columnas para calcular:
+
+  p #{items}
+
+  form(action='results' method='post')
+      p Columna 1:
+      input(type='text' name='column1')
+      br
+      p Columna 2:
+      input(type='text' name='column2')
+      br
+      br
+      input(type='submit' value='Calcular')
+
+
+
+
+
